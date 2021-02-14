@@ -6,6 +6,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.URI;
 import java.util.UUID;
 
 /*
@@ -30,6 +31,11 @@ public class BookClient {
     public BookDto getBookById(UUID id) {
         // 2nd argument is BookDto.class as we are expecting that
         return restTemplate.getForObject(apiHost + BOOK_PATH_V1 + id.toString(), BookDto.class);
+    }
+
+    public URI saveNewBook(BookDto bookDto) {
+        // POST action
+        return restTemplate.postForLocation(apiHost + BOOK_PATH_V1, bookDto);
     }
 
     public void setApiHost(String apiHost) {

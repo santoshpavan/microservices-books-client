@@ -1,6 +1,7 @@
 package com.springframework.msscbookclient.web.client;
 
 import com.springframework.msscbookclient.web.model.BookDto;
+import com.springframework.msscbookclient.web.model.CustomerDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,10 +15,11 @@ class BookClientTest {
     @Autowired
     BookClient client;
 
+    // book tests
     @Test
-    void getBookById() {
-        BookDto dto = client.getBookById(UUID.randomUUID());
-        assertNotNull(dto);
+    void testGetBookById() {
+        BookDto bookDto = client.getBookById(UUID.randomUUID());
+        assertNotNull(bookDto);
     }
 
     @Test
@@ -39,5 +41,32 @@ class BookClientTest {
     @Test
     void testDeleteBook() {
         client.deleteBook(UUID.randomUUID());
+    }
+
+    // customer tests
+    @Test
+    void testGetCustomerById() {
+        CustomerDto customerDto = client.getCustomerById(UUID.randomUUID());
+        assertNotNull((customerDto));
+    }
+
+    @Test
+    void testSaveNewCustomer() {
+        CustomerDto customerDto = CustomerDto.builder().customerName("New Customer").build();
+
+        URI uri = client.saveNewCustomer(customerDto);
+        assertNotNull(uri);
+        System.out.println(uri.toString());
+    }
+
+    @Test
+    void testUpdateCustomer() {
+        CustomerDto customerDto = CustomerDto.builder().customerName("New Customer").build();
+        client.updateCustomer(UUID.randomUUID(), customerDto);
+    }
+
+    @Test
+    void testDeleteCustomer() {
+        client.deleteCustomer(UUID.randomUUID());
     }
 }

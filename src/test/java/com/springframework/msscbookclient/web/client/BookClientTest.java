@@ -29,4 +29,15 @@ class BookClientTest {
         assertNotNull(uri);
         System.out.println(uri.toString());
     }
+
+    @Test
+    void testUpdateBook() {
+        BookDto bookDto = BookDto.builder().bookName("New Book").build();
+        client.updateBook(UUID.randomUUID(), bookDto);
+    }
+
+    @Test
+    void testDeleteBook() {
+        client.deleteBook(UUID.randomUUID());
+    }
 }

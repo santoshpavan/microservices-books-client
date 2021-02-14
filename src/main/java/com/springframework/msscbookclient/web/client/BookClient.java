@@ -38,6 +38,14 @@ public class BookClient {
         return restTemplate.postForLocation(apiHost + BOOK_PATH_V1, bookDto);
     }
 
+    public void updateBook(UUID uuid, BookDto bookDto) {
+        restTemplate.put(apiHost + BOOK_PATH_V1 + uuid.toString(), bookDto);
+    }
+
+    public void deleteBook(UUID uuid) {
+        restTemplate.delete(apiHost + BOOK_PATH_V1 + uuid.toString());
+    }
+
     public void setApiHost(String apiHost) {
         this.apiHost = apiHost;
     }

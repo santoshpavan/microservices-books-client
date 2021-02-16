@@ -16,8 +16,8 @@ import java.util.UUID;
  ignoreUnknownFields=false so if it's not set, it should fail
 */
 
+@ConfigurationProperties(prefix = "sfg.book", ignoreUnknownFields = false)
 @Component
-@ConfigurationProperties(value = "sfg.book", ignoreUnknownFields = false)
 public class BookClient {
     private final String BOOK_PATH_V1 = "/api/v1/book/";
     private final String CUSTOMER_PATH_V1 = "/api/v1/customer/";
